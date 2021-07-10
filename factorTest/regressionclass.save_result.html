@@ -1,0 +1,922 @@
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>regressionclass.save_result() | 量化投资程序 帮助文档</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="量化投资班二期 第1组">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-back-to-top-button/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-chapter-fold/chapter-fold.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-splitter/splitter.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-code/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-auto-scroll-table/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../example/example.html" />
+    
+    
+    <link rel="prev" href="../factorTest/regressionclass.get_result.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="5.9"
+        data-chapter-title="regressionclass.save_result()"
+        data-filepath="factorTest/regressionclass.save_result.md"
+        data-basepath=".."
+        data-revision="Sat Jul 10 2021 23:12:22 GMT+0800 (中国标准时间)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+                
+                <li>
+                    <a href="https://224466414.github.io/Quantitative_Investment_Help/" target="blank" class="custom-link">Home</a>
+                </li>
+            
+            
+
+            
+            <li class="divider"></li>
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        目录
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="getDate/getDate.html">
+            
+                
+                    <a href="../getDate/getDate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        日期获取模块 getDate
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="getDate/dateclass.html">
+            
+                
+                    <a href="../getDate/dateclass.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        dateclass()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="getDate/dateclass.get_dates.html">
+            
+                
+                    <a href="../getDate/dateclass.get_dates.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        dateclass.get_dates()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="getDate/dateclass.get_months.html">
+            
+                
+                    <a href="../getDate/dateclass.get_months.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        dateclass.get_months()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="getDate/dateclass.get_BOMs.html">
+            
+                
+                    <a href="../getDate/dateclass.get_BOMs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        dateclass.get_BOMs()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="getDate/dateclass.get_EOMs.html">
+            
+                
+                    <a href="../getDate/dateclass.get_EOMs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        dateclass.get_EOMs()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="getDate/dateclass.get_DUMs.html">
+            
+                
+                    <a href="../getDate/dateclass.get_DUMs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        dateclass.get_DUMs()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="getDate/dateclass.get_beforeDate.html">
+            
+                
+                    <a href="../getDate/dateclass.get_beforeDate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        dateclass.get_beforeDate()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="getDate/dateclass.get_afterDate.html">
+            
+                
+                    <a href="../getDate/dateclass.get_afterDate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                        dateclass.get_afterDate()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="getDate/dateclass.get_beforeMonth.html">
+            
+                
+                    <a href="../getDate/dateclass.get_beforeMonth.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.9.</b>
+                        
+                        dateclass.get_beforeMonth()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="getDate/dateclass.get_afterMonth.html">
+            
+                
+                    <a href="../getDate/dateclass.get_afterMonth.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.10.</b>
+                        
+                        dateclass.get_afterMonth()
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="getStock/getStock.html">
+            
+                
+                    <a href="../getStock/getStock.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        股票日频数据获取模块 getStock
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="getStock/stockclass.html">
+            
+                
+                    <a href="../getStock/stockclass.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        stockclass()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="getStock/stockclass.read_data.html">
+            
+                
+                    <a href="../getStock/stockclass.read_data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        stockclass.read_data()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="getStock/stockclass.get_stockPools.html">
+            
+                
+                    <a href="../getStock/stockclass.get_stockPools.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        stockclass.get_stockPools()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="getStock/stockclass.get_data.html">
+            
+                
+                    <a href="../getStock/stockclass.get_data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        stockclass.get_data()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="getStock/stockclass.get_names.html">
+            
+                
+                    <a href="../getStock/stockclass.get_names.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        stockclass.get_names()
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="getQuote/getQuote.html">
+            
+                
+                    <a href="../getQuote/getQuote.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        股票分钟频数据获取模块 getQuote
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="getQuote/quoteclass.html">
+            
+                
+                    <a href="../getQuote/quoteclass.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        quoteclass()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="getQuote/quoteclass.read_data.html">
+            
+                
+                    <a href="../getQuote/quoteclass.read_data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        quoteclass.read_data()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="getQuote/quoteclass.get_dataUniDate.html">
+            
+                
+                    <a href="../getQuote/quoteclass.get_dataUniDate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        quoteclass.get_dataUniDate()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="getQuote/quoteclass.get_dataMultiDates.html">
+            
+                
+                    <a href="../getQuote/quoteclass.get_dataMultiDates.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        quoteclass.get_dataMultiDates()
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="getIndex/getIndex.html">
+            
+                
+                    <a href="../getIndex/getIndex.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        指数数据获取模块 getIndex
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="getIndex/indexclass.html">
+            
+                
+                    <a href="../getIndex/indexclass.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        indexclass()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="getIndex/indexclass.read_data.html">
+            
+                
+                    <a href="../getIndex/indexclass.read_data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        indexclass.read_data()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="getIndex/indexclass.get_data.html">
+            
+                
+                    <a href="../getIndex/indexclass.get_data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        indexclass.get_data()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="getIndex/indexclass.get_infos.html">
+            
+                
+                    <a href="../getIndex/indexclass.get_infos.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        indexclass.get_infos()
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="factorTest/factorTest.html">
+            
+                
+                    <a href="../factorTest/factorTest.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        因子检验模块 factorTest
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="factorTest/ICIRclass.html">
+            
+                
+                    <a href="../factorTest/ICIRclass.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        ICIRclass()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="factorTest/ICIRclass.get_result.html">
+            
+                
+                    <a href="../factorTest/ICIRclass.get_result.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        ICIRclass.get_result()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="factorTest/ICIRclass.save_result.html">
+            
+                
+                    <a href="../factorTest/ICIRclass.save_result.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        ICIRclass.save_result()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="factorTest/groupclass.html">
+            
+                
+                    <a href="../factorTest/groupclass.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        groupclass()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="factorTest/groupclass.get_result.html">
+            
+                
+                    <a href="../factorTest/groupclass.get_result.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        groupclass.get_result()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="factorTest/groupclass.save_result.html">
+            
+                
+                    <a href="../factorTest/groupclass.save_result.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        groupclass.save_result()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="factorTest/regressionclass.html">
+            
+                
+                    <a href="../factorTest/regressionclass.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        regressionclass()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="factorTest/regressionclass.get_result.html">
+            
+                
+                    <a href="../factorTest/regressionclass.get_result.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        regressionclass.get_result()
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.9" data-path="factorTest/regressionclass.save_result.html">
+            
+                
+                    <a href="../factorTest/regressionclass.save_result.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        regressionclass.save_result()
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="example/example.html">
+            
+                
+                    <a href="../example/example.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        因子计算范例
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="example/MKT.html">
+            
+                
+                    <a href="../example/MKT.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        计算市场因子 MKT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="example/IVCAPM.html">
+            
+                
+                    <a href="../example/IVCAPM.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        计算基于CAPM的特质性波动率 IVCAPM
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="example/test_IVCAPM.html">
+            
+                
+                    <a href="../example/test_IVCAPM.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        进行因子有效性检验
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    本书使用 GitBook 发布
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >量化投资程序 帮助文档</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="regressionclasssaveresult">regressionclass.save_result()</h1>
+<pre><code class="lang-python">regressionClass.save_result(pathResult, regressionResult)
+</code></pre>
+<ol>
+<li><p>&#x91CA;&#x4E49;</p>
+<p> &#x5B58;&#x50A8;&#x8BA1;&#x7B97;&#x51FA;&#x7684;IC&#x4E0E;IR&#x3002;</p>
+</li>
+<li><p>&#x53C2;&#x6570;</p>
+<p><code>pathResult</code></p>
+<ul>
+<li>&#x91CA;&#x4E49;<br>  &#x8BA1;&#x7B97;&#x7ED3;&#x679C;&#x5B58;&#x50A8;&#x7684;&#x6587;&#x4EF6;&#x5939;&#x4F4D;&#x7F6E;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x5B57;&#x7B26;&#x578B;(str)</li>
+</ul>
+<p><code>regressionResult</code></p>
+<ul>
+<li>&#x91CA;&#x4E49;<br>  &#x56DE;&#x5F52;&#x6CD5;&#x7684;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x6570;&#x636E;&#x6846;(pd.DataFrame)</li>
+</ul>
+</li>
+<li><p>&#x8FD4;&#x56DE;</p>
+<p> &#x65E0;</p>
+</li>
+<li><p>&#x4F8B;&#x5B50;</p>
+<ul>
+<li><p>&#x8F93;&#x5165;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> sys
+sys.path.append(<span class="hljs-string">&apos;modules&apos;</span>)
+<span class="hljs-keyword">from</span> factorTest <span class="hljs-keyword">import</span> regressionclass
+
+factor = pd.read_csv(<span class="hljs-string">&apos;factor/final/IVCAPM.csv&apos;</span>).set_index(<span class="hljs-string">&apos;secIDs&apos;</span>)
+EReturn = pd.read_csv(<span class="hljs-string">&apos;factor/final/EReturn.csv&apos;</span>).set_index(<span class="hljs-string">&apos;secIDs&apos;</span>)
+
+beginDate = <span class="hljs-string">&apos;20050101&apos;</span>
+endDate = <span class="hljs-string">&apos;20210531&apos;</span>
+
+regressionClass = regressionclass(factor, EReturn, beginDate, endDate)
+regressionResult = regressionClass.get_result()
+
+pathResult = <span class="hljs-string">&apos;result/factor&apos;</span>
+regressionClass.save_result(pathResult, regressionResult)
+</code></pre>
+</li>
+<li><p>&#x8F93;&#x51FA;</p>
+<pre><code class="lang-python">&#x5728; <span class="hljs-string">&apos;result/factor/regression&apos;</span> &#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x80FD;&#x591F;&#x627E;&#x5230;:
+<span class="hljs-string">&apos;regression.csv&apos;</span>: &#x56DE;&#x5F52;&#x6570;&#x636E;
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../factorTest/regressionclass.get_result.html" class="navigation navigation-prev " aria-label="Previous page: regressionclass.get_result()"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../example/example.html" class="navigation navigation-next " aria-label="Next page: 因子计算范例"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-back-to-top-button/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-splitter/splitter.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-code/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-auto-scroll-table/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"back-to-top-button":{},"chapter-fold":{},"expandable-chapters":{},"splitter":{},"popup":{},"code":{"copyButtons":true},"auto-scroll-table":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
