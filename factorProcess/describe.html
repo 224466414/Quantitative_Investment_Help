@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>indexclass.read_data() | 量化投资程序 帮助文档</title>
+        <title>describe() | 量化投资程序 帮助文档</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -61,10 +61,10 @@
         
     
     
-    <link rel="next" href="../getIndex/indexclass.get_data.html" />
+    <link rel="next" href="../factorProcess/winsorize.html" />
     
     
-    <link rel="prev" href="../getIndex/indexclass.html" />
+    <link rel="prev" href="../factorProcess/factorProcess.html" />
     
 
         
@@ -73,9 +73,9 @@
         
         
     <div class="book"
-        data-level="4.2"
-        data-chapter-title="indexclass.read_data()"
-        data-filepath="getIndex/indexclass.read_data.md"
+        data-level="5.1"
+        data-chapter-title="describe()"
+        data-filepath="factorProcess/describe.md"
         data-basepath=".."
         data-revision="Wed Jul 14 2021 17:06:36 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -492,7 +492,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.2" data-path="getIndex/indexclass.read_data.html">
+        <li class="chapter " data-level="4.2" data-path="getIndex/indexclass.read_data.html">
             
                 
                     <a href="../getIndex/indexclass.read_data.html">
@@ -558,7 +558,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="5.1" data-path="factorProcess/describe.html">
+        <li class="chapter active" data-level="5.1" data-path="factorProcess/describe.html">
             
                 
                     <a href="../factorProcess/describe.html">
@@ -893,62 +893,61 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="indexclassreaddata">indexclass.read_data()</h1>
-<pre><code class="lang-python">fileContent = indexClass.read_data(filename, index=<span class="hljs-keyword">True</span>)
+                        <h1 id="describe">describe()</h1>
+<pre><code class="lang-python">describe(data, type=<span class="hljs-string">&apos;show&apos;</span>, path=<span class="hljs-string">&apos;&apos;</span>)
 </code></pre>
 <ol>
 <li><p>&#x91CA;&#x4E49;</p>
-<p> &#x8BFB;&#x53D6;&#x6307;&#x5B9A;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x8BFB;&#x53D6; &quot;indexClose.npy&quot; &#x4E2D;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x8BE5;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x5305;&#x542B;&#x6240;&#x6709;&#x6307;&#x6570;&#x5728;&#x6240;&#x6709;&#x65E5;&#x671F;&#x7684;&#x6536;&#x76D8;&#x4EF7;&#x3002;</p>
+<p> &#x6839;&#x636E;&#x8F93;&#x5165;&#x7684;&#x56E0;&#x5B50;&#x6570;&#x636E;&#x7ED8;&#x5236;&#x5176;&#x5168;&#x622A;&#x9762;&#x6982;&#x7387;&#x5BC6;&#x5EA6;&#x56FE;&#xFF0C;&#x5E76;&#x8BA1;&#x7B97;&#x63CF;&#x8FF0;&#x7EDF;&#x8BA1;&#x91CF;&#x3002;</p>
 </li>
 <li><p>&#x53C2;&#x6570;</p>
-<p><code>filename</code></p>
+<p><code>data</code></p>
 <ul>
-<li>&#x91CA;&#x4E49;<br>  &#x8981;&#x6C42;&#x8BFB;&#x53D6;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#x3002;&#x4E0D;&#x5E26;&#x540E;&#x7F00;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x5939;</li>
+<li>&#x91CA;&#x4E49;<br>  &#x8F93;&#x5165;&#x7684;&#x56E0;&#x5B50;&#x6570;&#x636E;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x6570;&#x636E;&#x6846;(pd.DataFrame)</li>
+</ul>
+<p><code>type</code> (optional)</p>
+<ul>
+<li>&#x91CA;&#x4E49;<br>  &#x51FD;&#x6570;&#x6267;&#x884C;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;show&#x3002;&#x53EF;&#x9009;&#x4E3A;(show)&#x5C55;&#x793A;&#x6216;(save)&#x5B58;&#x50A8;</li>
 <li>&#x7C7B;&#x578B;<br>  &#x5B57;&#x7B26;&#x578B;(str)</li>
 </ul>
-<p><code>index</code> (optional)</p>
+<p><code>path</code> (optional)</p>
 <ul>
-<li>&#x91CA;&#x4E49;<br>  &#x8BFB;&#x53D6;&#x540E;&#x662F;&#x5426;&#x52A0;&#x8F7D;&#x8868;&#x5934;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;True&#x3002;index&#x4E3A;&#x4EA4;&#x6613;&#x65E5;&#x671F;&#xFF0C;column&#x4E3A;&#x80A1;&#x7968;&#x4EE3;&#x7801;</li>
-<li>&#x7C7B;&#x578B;<br>  &#x5E03;&#x5C14;&#x578B;(bool)</li>
+<li>&#x91CA;&#x4E49;<br>  &#x6570;&#x636E;&#x5B58;&#x50A8;&#x7684;&#x4F4D;&#x7F6E;&#x3002;&#x5F53;<code>type=&apos;show&apos;</code>&#x65F6;&#x5FC5;&#x586B;&#xFF0C;&#x5F53;<code>type=&apos;save&apos;</code>&#x65F6;&#x65E0;&#x9700;&#x586B;&#x5199;&#x3002;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x5B57;&#x7B26;&#x578B;(str)</li>
 </ul>
 </li>
 <li><p>&#x8FD4;&#x56DE;</p>
-<ul>
-<li>&#x91CA;&#x4E49;<br>  &#x8FD4;&#x56DE;&#x8BFB;&#x53D6;&#x7684;&#x6570;&#x636E;</li>
-<li>&#x7C7B;&#x578B;<br>  &#x6570;&#x636E;&#x6846;(pd.DataFrame)</li>
-</ul>
+<p> &#x65E0;</p>
 </li>
 <li><p>&#x4F8B;&#x5B50;</p>
 <ul>
 <li><p>&#x8F93;&#x5165;</p>
-<pre><code class="lang-python"><span class="hljs-keyword">import</span> sys
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> sys
 sys.path.append(<span class="hljs-string">&apos;modules&apos;</span>)
-<span class="hljs-keyword">from</span> getIndex <span class="hljs-keyword">import</span> indexclass
+<span class="hljs-keyword">from</span> factorProcess <span class="hljs-keyword">import</span> *
 
-indexClass = indexclass(<span class="hljs-string">&apos;data/index&apos;</span>, preRead=[<span class="hljs-string">&apos;Close&apos;</span>, <span class="hljs-string">&apos;Volume&apos;</span>])
+factor = pd.read_csv(<span class="hljs-string">&apos;factor/IVCAPM.csv&apos;</span>).set_index(<span class="hljs-string">&apos;secIDs&apos;</span>)
 
-fileName = <span class="hljs-string">&apos;indexClose&apos;</span>
-fileContent = indexClass.read_data(fileName)
-print(fileContent)
+afterWinsorize = winsorize(factor, type=<span class="hljs-string">&apos;Boxplot&apos;</span>, times=<span class="hljs-number">1</span>)
+describe(afterWinsorize)
 </code></pre>
 </li>
 <li><p>&#x8F93;&#x51FA;</p>
-<pre><code class="lang-python">indexIDs  <span class="hljs-number">000001.</span>SH  <span class="hljs-number">000002.</span>SH  <span class="hljs-number">000003.</span>SH  <span class="hljs-number">000009.</span>SH   <span class="hljs-number">000010.</span>SH  <span class="hljs-number">000139.</span>SH  <span class="hljs-number">000159.</span>SH  ...  <span class="hljs-number">399005.</span>SZ  <span class="hljs-number">399006.</span>SZ   <span class="hljs-number">399101.</span>SZ  <span class="hljs-number">399102.</span>SZ  <span class="hljs-number">399106.</span>SZ  <span class="hljs-number">399107.</span>SZ  <span class="hljs-number">399108.</span>SZ
-dates                                                                                   ...
-<span class="hljs-number">20050104</span>  <span class="hljs-number">1242.7740</span>  <span class="hljs-number">1305.0530</span>    <span class="hljs-number">75.2900</span>   <span class="hljs-number">848.1440</span>   <span class="hljs-number">2321.2950</span>    <span class="hljs-number">117.898</span>   <span class="hljs-number">830.9200</span>  ...        NaN        NaN         NaN        NaN   <span class="hljs-number">310.6210</span>   <span class="hljs-number">322.8920</span>   <span class="hljs-number">222.5220</span>
-<span class="hljs-number">20050105</span>  <span class="hljs-number">1251.9370</span>  <span class="hljs-number">1314.3770</span>    <span class="hljs-number">77.2970</span>   <span class="hljs-number">860.1820</span>   <span class="hljs-number">2339.7260</span>    <span class="hljs-number">117.706</span>   <span class="hljs-number">839.4570</span>  ...        NaN        NaN         NaN        NaN   <span class="hljs-number">315.2500</span>   <span class="hljs-number">327.6820</span>   <span class="hljs-number">226.1800</span>
-<span class="hljs-number">20050106</span>  <span class="hljs-number">1239.4300</span>  <span class="hljs-number">1300.8750</span>    <span class="hljs-number">78.3310</span>   <span class="hljs-number">853.4350</span>   <span class="hljs-number">2315.2070</span>    <span class="hljs-number">117.545</span>   <span class="hljs-number">831.4970</span>  ...        NaN        NaN         NaN        NaN   <span class="hljs-number">311.9790</span>   <span class="hljs-number">324.1580</span>   <span class="hljs-number">225.7940</span>
-<span class="hljs-number">20050107</span>  <span class="hljs-number">1244.7460</span>  <span class="hljs-number">1306.4780</span>    <span class="hljs-number">78.5530</span>   <span class="hljs-number">856.3090</span>   <span class="hljs-number">2319.2170</span>    <span class="hljs-number">117.693</span>   <span class="hljs-number">833.4370</span>  ...        NaN        NaN         NaN        NaN   <span class="hljs-number">312.6080</span>   <span class="hljs-number">324.6110</span>   <span class="hljs-number">229.4470</span>
-<span class="hljs-number">20050110</span>  <span class="hljs-number">1252.4010</span>  <span class="hljs-number">1314.6270</span>    <span class="hljs-number">78.4780</span>   <span class="hljs-number">863.1240</span>   <span class="hljs-number">2342.9710</span>    <span class="hljs-number">118.031</span>   <span class="hljs-number">841.2220</span>  ...        NaN        NaN         NaN        NaN   <span class="hljs-number">315.8480</span>   <span class="hljs-number">328.0640</span>   <span class="hljs-number">230.4180</span>
-<span class="hljs-prompt">... </span>            ...        ...        ...        ...         ...        ...        ...  ...        ...        ...         ...        ...        ...        ...        ...
-<span class="hljs-number">20210525</span>  <span class="hljs-number">3581.3418</span>  <span class="hljs-number">3753.9932</span>   <span class="hljs-number">249.2886</span>  <span class="hljs-number">6042.4547</span>  <span class="hljs-number">10798.3292</span>        NaN  <span class="hljs-number">3821.8378</span>  ...  <span class="hljs-number">9534.0050</span>  <span class="hljs-number">3227.3554</span>  <span class="hljs-number">12863.8111</span>  <span class="hljs-number">3197.4163</span>  <span class="hljs-number">2381.9341</span>  <span class="hljs-number">2492.4341</span>  <span class="hljs-number">1153.4683</span>
-<span class="hljs-number">20210526</span>  <span class="hljs-number">3593.3570</span>  <span class="hljs-number">3766.5787</span>   <span class="hljs-number">250.5118</span>  <span class="hljs-number">6044.2517</span>  <span class="hljs-number">10843.9638</span>        NaN  <span class="hljs-number">3833.4802</span>  ...  <span class="hljs-number">9480.6648</span>  <span class="hljs-number">3196.8478</span>  <span class="hljs-number">12859.9356</span>  <span class="hljs-number">3184.7553</span>  <span class="hljs-number">2380.5586</span>  <span class="hljs-number">2490.9873</span>  <span class="hljs-number">1155.0206</span>
-<span class="hljs-number">20210527</span>  <span class="hljs-number">3608.8507</span>  <span class="hljs-number">3782.8716</span>   <span class="hljs-number">249.2909</span>  <span class="hljs-number">6101.0543</span>  <span class="hljs-number">10865.9502</span>        NaN  <span class="hljs-number">3848.2248</span>  ...  <span class="hljs-number">9544.1053</span>  <span class="hljs-number">3226.1082</span>  <span class="hljs-number">12955.6143</span>  <span class="hljs-number">3223.0568</span>  <span class="hljs-number">2399.2744</span>  <span class="hljs-number">2510.6188</span>  <span class="hljs-number">1149.9633</span>
-<span class="hljs-number">20210528</span>  <span class="hljs-number">3600.7844</span>  <span class="hljs-number">3774.3905</span>   <span class="hljs-number">249.8690</span>  <span class="hljs-number">6061.2408</span>  <span class="hljs-number">10861.0805</span>        NaN  <span class="hljs-number">3842.1713</span>  ...  <span class="hljs-number">9506.2085</span>  <span class="hljs-number">3232.2912</span>  <span class="hljs-number">12921.7336</span>  <span class="hljs-number">3226.1333</span>  <span class="hljs-number">2393.4849</span>  <span class="hljs-number">2504.5386</span>  <span class="hljs-number">1153.7144</span>
-<span class="hljs-number">20210531</span>  <span class="hljs-number">3615.4773</span>  <span class="hljs-number">3789.7905</span>   <span class="hljs-number">250.9481</span>  <span class="hljs-number">6115.7409</span>  <span class="hljs-number">10870.2097</span>        NaN  <span class="hljs-number">3851.6610</span>  ...  <span class="hljs-number">9583.5938</span>  <span class="hljs-number">3309.0690</span>  <span class="hljs-number">13033.5225</span>  <span class="hljs-number">3298.4809</span>  <span class="hljs-number">2419.7565</span>  <span class="hljs-number">2532.0512</span>  <span class="hljs-number">1159.7966</span>
-
-[<span class="hljs-number">3986</span> rows x <span class="hljs-number">19</span> columns]
+<pre><code class="lang-python">count    <span class="hljs-number">433877.000000</span>
+mean          <span class="hljs-number">0.021664</span>
+std           <span class="hljs-number">0.011479</span>
+min           <span class="hljs-number">0.000000</span>
+<span class="hljs-number">25</span>%           <span class="hljs-number">0.013708</span>
+<span class="hljs-number">50</span>%           <span class="hljs-number">0.019572</span>
+<span class="hljs-number">75</span>%           <span class="hljs-number">0.027550</span>
+max           <span class="hljs-number">1.543074</span>
+dtype: float64
 </code></pre>
+<p><img src="../images/ProbabilityDensityFunction.png" alt="avatar">
+<img src="../images/MeanTimeSeries.png" alt="avatar">
+<img src="../images/VolatilityTimeSeries.png" alt="avatar"></p>
 </li>
 </ul>
 </li>
@@ -963,10 +962,10 @@ dates                                                                           
         </div>
 
         
-        <a href="../getIndex/indexclass.html" class="navigation navigation-prev " aria-label="Previous page: indexclass()"><i class="fa fa-angle-left"></i></a>
+        <a href="../factorProcess/factorProcess.html" class="navigation navigation-prev " aria-label="Previous page: 因子处理模块 factorProcess"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../getIndex/indexclass.get_data.html" class="navigation navigation-next " aria-label="Next page: indexclass.get_data()"><i class="fa fa-angle-right"></i></a>
+        <a href="../factorProcess/winsorize.html" class="navigation navigation-next " aria-label="Next page: winsorize()"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
