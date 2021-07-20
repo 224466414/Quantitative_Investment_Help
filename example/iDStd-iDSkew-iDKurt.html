@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>计算基于CAPM的特质性波动率 IVCAPM | 量化投资程序 帮助文档</title>
+        <title>计算 iDStd/iDSkew/iDKurt | 量化投资程序 帮助文档</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -61,10 +61,10 @@
         
     
     
-    <link rel="next" href="../example/test_IVCAPM.html" />
+    <link rel="next" href="../example/factorTest.html" />
     
     
-    <link rel="prev" href="../example/MKT.html" />
+    <link rel="prev" href="../example/MKT-SMB-HML.html" />
     
 
         
@@ -74,10 +74,10 @@
         
     <div class="book"
         data-level="7.2"
-        data-chapter-title="计算基于CAPM的特质性波动率 IVCAPM"
-        data-filepath="example/IVCAPM.md"
+        data-chapter-title="计算 iDStd/iDSkew/iDKurt"
+        data-filepath="example/iDStd-iDSkew-iDKurt.md"
         data-basepath=".."
-        data-revision="Tue Jul 20 2021 23:16:10 GMT+0800 (中国标准时间)"
+        data-revision="Tue Jul 20 2021 23:32:12 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -963,46 +963,46 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="7.1" data-path="example/MKT.html">
+        <li class="chapter " data-level="7.1" data-path="example/MKT-SMB-HML.html">
             
                 
-                    <a href="../example/MKT.html">
+                    <a href="../example/MKT-SMB-HML.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>7.1.</b>
                         
-                        计算市场因子 MKT
+                        计算 MKT/SMB/HML
                     </a>
             
             
         </li>
     
-        <li class="chapter active" data-level="7.2" data-path="example/IVCAPM.html">
+        <li class="chapter active" data-level="7.2" data-path="example/iDStd-iDSkew-iDKurt.html">
             
                 
-                    <a href="../example/IVCAPM.html">
+                    <a href="../example/iDStd-iDSkew-iDKurt.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>7.2.</b>
                         
-                        计算基于CAPM的特质性波动率 IVCAPM
+                        计算 iDStd/iDSkew/iDKurt
                     </a>
             
             
         </li>
     
-        <li class="chapter " data-level="7.3" data-path="example/test_IVCAPM.html">
+        <li class="chapter " data-level="7.3" data-path="example/factorTest.html">
             
                 
-                    <a href="../example/test_IVCAPM.html">
+                    <a href="../example/factorTest.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>7.3.</b>
                         
-                        进行因子有效性检验
+                        进行因子预处理与有效性检验
                     </a>
             
             
@@ -1046,11 +1046,11 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="&#x8BA1;&#x7B97;&#x57FA;&#x4E8E;capm&#x7684;&#x7279;&#x8D28;&#x6027;&#x6CE2;&#x52A8;&#x7387;-ivcapm">&#x8BA1;&#x7B97;&#x57FA;&#x4E8E;CAPM&#x7684;&#x7279;&#x8D28;&#x6027;&#x6CE2;&#x52A8;&#x7387; IVCAPM</h1>
+                        <h1 id="&#x8BA1;&#x7B97;-idstdidskewidkurt">&#x8BA1;&#x7B97; iDStd/iDSkew/iDKurt</h1>
 <pre><code class="lang-python"><span class="hljs-comment"># -*- encoding: utf-8 -*-</span>
 <span class="hljs-string">&apos;&apos;&apos;
-Filename         :&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_002_IVCAPM.py
-Description      :&#x8BE5;&#x6A21;&#x5757;&#x7528;&#x4E8E;&#x8BA1;&#x7B97;&#x56E0;&#x5B50;IVCAPM
+Filename         :&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009_iDStd-iDSkew-iDKurt.py
+Description      :&#x8BE5;&#x6A21;&#x5757;&#x7528;&#x4E8E;&#x8BA1;&#x7B97;&#x56E0;&#x5B50;iDStd/iDSkew/iDKurt
 Time             :2021/06/25 10:31:29
 Author           :&#x91CF;&#x5316;&#x6295;&#x8D44;1&#x7EC4;
 Version          :1.0
@@ -1061,84 +1061,158 @@ Version          :1.0
 <span class="hljs-keyword">import</span> statsmodels.api <span class="hljs-keyword">as</span> sm
 <span class="hljs-keyword">import</span> time, sys
 <span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> OrderedDict
+<span class="hljs-keyword">from</span> concurrent.futures <span class="hljs-keyword">import</span> ProcessPoolExecutor
 sys.path.append(<span class="hljs-string">&apos;modules&apos;</span>)
 <span class="hljs-keyword">from</span> getStock <span class="hljs-keyword">import</span> stockclass
 <span class="hljs-keyword">from</span> getDate <span class="hljs-keyword">import</span> dateclass
+<span class="hljs-keyword">from</span> getQuote <span class="hljs-keyword">import</span> quoteclass
 <span class="hljs-keyword">import</span> basicFunction <span class="hljs-keyword">as</span> fun
 
 <span class="hljs-comment"># &#x8BBE;&#x5B9A;&#x5F00;&#x59CB;&#x4E0E;&#x7ED3;&#x675F;&#x65E5;&#x671F;</span>
 beginDate = <span class="hljs-string">&apos;20050101&apos;</span>
 endDate = <span class="hljs-string">&apos;20210531&apos;</span>
 
-<span class="hljs-comment"># &#x521B;&#x5EFA;&#x65E5;&#x671F;&#x548C;&#x6570;&#x636E;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;</span>
-stockClass = stockclass(<span class="hljs-string">&apos;data/stock/1day&apos;</span>, preRead=[<span class="hljs-string">&apos;DailyReturnSimple&apos;</span>])
-dateClass = dateclass(<span class="hljs-string">&apos;data/date&apos;</span>)
+<span class="hljs-comment"># &#x521B;&#x5EFA;&#x65E5;&#x671F;&#x6570;&#x636E;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;</span>
+dateClass = dateclass()
+dates = dateClass.get_dates(beginDate, endDate, showProcess=<span class="hljs-keyword">False</span>)
 
-<span class="hljs-comment"># &#x83B7;&#x53D6;&#x6708;&#x4EFD;&#x6570;&#x636E;&#x548C;&#x6708;&#x521D;&#x65E5;&#x671F;&#x6570;&#x636E;</span>
-months = dateClass.get_months(beginDate, endDate)
-BOMs = dateClass.get_BOMs(beginDate, endDate)
-EOMs = dateClass.get_EOMs(beginDate, endDate)
+<span class="hljs-comment"># &#x521B;&#x5EFA;&#x80A1;&#x7968;&#x65E5;&#x9891;&#x6570;&#x636E;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;</span>
+stockClass = stockclass(<span class="hljs-string">&apos;data/stock/1day&apos;</span>, preRead=[], showProcess=<span class="hljs-keyword">False</span>)
+stockPools = stockClass.get_stockPools(dates, showProcess=<span class="hljs-keyword">False</span>)
 
-<span class="hljs-comment"># &#x83B7;&#x53D6;&#x6BCF;&#x6708;&#x6708;&#x672B;&#x7684;&#x8BC1;&#x5238;&#x6C60;</span>
-stockPools = stockClass.get_stockPools(EOMs)
+<span class="hljs-comment"># &#x521B;&#x5EFA;&#x80A1;&#x7968;&#x5206;&#x949F;&#x9891;&#x6570;&#x636E;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;</span>
+quoteClass = quoteclass(<span class="hljs-string">&apos;data/stock/5min&apos;</span>)
 
 <span class="hljs-comment"># &#x83B7;&#x53D6;&#x524D;&#x671F;&#x8BA1;&#x7B97;&#x597D;&#x7684;MKT&#x6570;&#x636E;</span>
-dataMKT = pd.read_csv(<span class="hljs-string">&apos;factor/MKT.csv&apos;</span>)
-dataMKT.columns = [<span class="hljs-string">&apos;dates&apos;</span>, <span class="hljs-string">&apos;MKT&apos;</span>]
+dataMKT = pd.read_csv(<span class="hljs-string">&apos;factor/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009_MKT.csv&apos;</span>)
 dataMKT[<span class="hljs-string">&apos;dates&apos;</span>] = dataMKT[<span class="hljs-string">&apos;dates&apos;</span>].apply(<span class="hljs-keyword">lambda</span> x: str(x))
-dataMKT = dataMKT.set_index(<span class="hljs-string">&apos;dates&apos;</span>)[<span class="hljs-string">&apos;MKT&apos;</span>]
+dataMKT = dataMKT.set_index(<span class="hljs-string">&apos;dates&apos;</span>)
+dataMKT.columns = pd.Series(dataMKT.columns, name=<span class="hljs-string">&apos;order&apos;</span>).apply(<span class="hljs-keyword">lambda</span> x: int(x))
 
-<span class="hljs-comment"># &#x8BA1;&#x7B97;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x65F6;&#x95F4;</span>
-print(<span class="hljs-string">&apos;\n&#x56E0;&#x5B50;&#x8BA1;&#x7B97;&#x5F00;&#x59CB;&apos;</span>)
-funStart, number = time.perf_counter(), <span class="hljs-number">0</span>
+<span class="hljs-comment"># &#x83B7;&#x53D6;&#x524D;&#x671F;&#x8BA1;&#x7B97;&#x597D;&#x7684;SMB&#x6570;&#x636E;</span>
+dataSMB = pd.read_csv(<span class="hljs-string">&apos;factor/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009_SMB.csv&apos;</span>)
+dataSMB[<span class="hljs-string">&apos;dates&apos;</span>] = dataSMB[<span class="hljs-string">&apos;dates&apos;</span>].apply(<span class="hljs-keyword">lambda</span> x: str(x))
+dataSMB = dataSMB.set_index(<span class="hljs-string">&apos;dates&apos;</span>)
+dataSMB.columns = pd.Series(dataSMB.columns, name=<span class="hljs-string">&apos;order&apos;</span>).apply(<span class="hljs-keyword">lambda</span> x: int(x))
 
-<span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x6709;&#x5E8F;&#x5B57;&#x5178;&#x5B58;&#x50A8;&#x56E0;&#x5B50;</span>
-factorResult = OrderedDict()
+<span class="hljs-comment"># &#x83B7;&#x53D6;&#x524D;&#x671F;&#x8BA1;&#x7B97;&#x597D;&#x7684;HML&#x6570;&#x636E;</span>
+dataHML = pd.read_csv(<span class="hljs-string">&apos;factor/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009_HML.csv&apos;</span>)
+dataHML[<span class="hljs-string">&apos;dates&apos;</span>] = dataHML[<span class="hljs-string">&apos;dates&apos;</span>].apply(<span class="hljs-keyword">lambda</span> x: str(x))
+dataHML = dataHML.set_index(<span class="hljs-string">&apos;dates&apos;</span>)
+dataHML.columns = pd.Series(dataHML.columns, name=<span class="hljs-string">&apos;order&apos;</span>).apply(<span class="hljs-keyword">lambda</span> x: int(x))
 
-<span class="hljs-keyword">for</span> month <span class="hljs-keyword">in</span> months:
+funStart = <span class="hljs-number">0</span>
 
-    <span class="hljs-comment"># &#x83B7;&#x53D6;&#x5F53;&#x524D;&#x8BC1;&#x5238;&#x6C60;</span>
-    stockPool = stockPools[EOMs[month]]
 
-    <span class="hljs-comment"># &#x83B7;&#x53D6;&#x672C;&#x6708;&#x6570;&#x636E;</span>
-    DUMs = dateClass.get_DUMs(month, showProcess=<span class="hljs-keyword">False</span>)
-    returnMonth = stockClass.get_data(secIDs=stockPool, dates=DUMs, fields=[<span class="hljs-string">&apos;DailyReturnSimple&apos;</span>], showProcess=<span class="hljs-keyword">False</span>)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_results</span><span class="hljs-params">(thisDate)</span>:</span>
+    print(thisDate)
+    <span class="hljs-comment"># &#x5B58;&#x50A8;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;</span>
+    factorResult = OrderedDict()
+    <span class="hljs-comment"># &#x83B7;&#x53D6;&#x4E0A;&#x4E00;&#x65E5;&#x4E0E;&#x4E0B;&#x4E00;&#x65E5;&#x7684;&#x65E5;&#x671F;</span>
+    lastDate = dateClass.get_beforeDate(thisDate, <span class="hljs-number">1</span>, showProcess=<span class="hljs-keyword">False</span>)
+    <span class="hljs-comment"># &#x5982;&#x679C;&#x4E0A;&#x4E00;&#x65E5;&#x6709;&#x6570;&#x636E;&#xFF0C;&#x4E14;&#x5728;&#x8BBE;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x8303;&#x56F4;&#x5185;</span>
+    <span class="hljs-keyword">if</span> lastDate != <span class="hljs-string">&apos;out of range&apos;</span>:
+        <span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x6709;&#x5E8F;&#x5B57;&#x5178;&#x4EE5;&#x5B58;&#x50A8;&#x5F53;&#x65E5;&#x7684;&#x6536;&#x76CA;&#x7387;</span>
+        returnDate = OrderedDict()
+        <span class="hljs-comment"># &#x83B7;&#x53D6;&#x672C;&#x65E5;&#x4EF7;&#x683C;&#x6570;&#x636E;</span>
+        dataPrice = quoteClass.get_data(secIDs=stockPools[thisDate], dates=[thisDate], fields=[<span class="hljs-string">&apos;Open&apos;</span>, <span class="hljs-string">&apos;Close&apos;</span>], showProcess=<span class="hljs-keyword">False</span>)
+        <span class="hljs-keyword">for</span> order <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">48</span>):
+            <span class="hljs-keyword">if</span> order == <span class="hljs-number">0</span>:
+                thisPrice = dataPrice[dataPrice[<span class="hljs-string">&apos;order&apos;</span>] == order][<span class="hljs-string">&apos;Open&apos;</span>]
+                nextPrice = dataPrice[dataPrice[<span class="hljs-string">&apos;order&apos;</span>] == order][<span class="hljs-string">&apos;Close&apos;</span>]
+                returnDate[order] = nextPrice / thisPrice - <span class="hljs-number">1</span>
+            <span class="hljs-keyword">else</span>:
+                lastPrice = dataPrice[dataPrice[<span class="hljs-string">&apos;order&apos;</span>] == order - <span class="hljs-number">1</span>][<span class="hljs-string">&apos;Close&apos;</span>]
+                thisPrice = dataPrice[dataPrice[<span class="hljs-string">&apos;order&apos;</span>] == order][<span class="hljs-string">&apos;Close&apos;</span>]
+                returnDate[order] = thisPrice / lastPrice - <span class="hljs-number">1</span>
+        returnDate = pd.DataFrame(returnDate)
+        <span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x6709;&#x5E8F;&#x5B57;&#x5178;&#x4EE5;&#x5B58;&#x50A8;&#x5F53;&#x65E5;&#x7684;&#x56E0;&#x5B50;</span>
+        factorStdDate, factorSkewDate, factorKurtDate = OrderedDict(), OrderedDict(), OrderedDict()
+        <span class="hljs-comment"># &#x904D;&#x5386;&#x8BC1;&#x5238;&#x6C60;&#x4E2D;&#x7684;&#x80A1;&#x7968;</span>
+        <span class="hljs-keyword">for</span> secID <span class="hljs-keyword">in</span> stockPools[thisDate]:
+            <span class="hljs-comment"># &#x83B7;&#x53D6;&#x8BE5;&#x8BC1;&#x5238;&#x5728;&#x8BE5;&#x65E5;&#x7684;&#x884C;&#x60C5;&#x5E8F;&#x5217;</span>
+            <span class="hljs-keyword">if</span> secID <span class="hljs-keyword">in</span> returnDate.index.tolist():
+                dataTotal = pd.DataFrame({<span class="hljs-string">&apos;Return&apos;</span>: returnDate.loc[secID, :],
+                                          <span class="hljs-string">&apos;MKT&apos;</span>: dataMKT.loc[thisDate, :],
+                                          <span class="hljs-string">&apos;SMB&apos;</span>: dataSMB.loc[thisDate, :],
+                                          <span class="hljs-string">&apos;HML&apos;</span>: dataHML.loc[thisDate, :]})
+                dataTotal[np.isinf(dataTotal)] = np.nan
+                dataTotal = dataTotal.replace(<span class="hljs-number">0</span>, np.nan).dropna()
+            <span class="hljs-keyword">else</span>:
+                dataTotal = pd.DataFrame()
+            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> dataTotal.empty:
+                X, y = sm.add_constant(dataTotal[[<span class="hljs-string">&apos;MKT&apos;</span>, <span class="hljs-string">&apos;SMB&apos;</span>, <span class="hljs-string">&apos;HML&apos;</span>]]), dataTotal[<span class="hljs-string">&apos;Return&apos;</span>]
+                <span class="hljs-comment"># &#x5982;&#x679C;&#x5F53;&#x65E5;&#x6709;&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x53C2;&#x4E0E;&#x8FD0;&#x7B97;</span>
+                fit = sm.OLS(y, X).fit()
+                <span class="hljs-comment"># &#x8BA1;&#x7B97;&#x65E5;&#x5185;&#x7279;&#x8D28;&#x6CE2;&#x52A8;&#x7387;</span>
+                factorStdDate[secID] = np.sqrt(fit.resid.apply(<span class="hljs-keyword">lambda</span> x: x**<span class="hljs-number">2</span>).sum())
+                <span class="hljs-comment"># &#x8BA1;&#x7B97;&#x65E5;&#x5185;&#x7279;&#x8D28;&#x504F;&#x5EA6;</span>
+                SkewNumerator = np.sqrt(len(fit.resid)) * fit.resid.apply(<span class="hljs-keyword">lambda</span> x: x**<span class="hljs-number">3</span>).sum()
+                SkewDenominator = np.sqrt(factorStdDate[secID] ** <span class="hljs-number">3</span>)
+                factorSkewDate[secID] = SkewNumerator / SkewDenominator
+                <span class="hljs-comment"># &#x8BA1;&#x7B97;&#x65E5;&#x5185;&#x7279;&#x8D28;&#x5CF0;&#x5EA6;</span>
+                KurtNumerator = len(fit.resid) * fit.resid.apply(<span class="hljs-keyword">lambda</span> x: x**<span class="hljs-number">4</span>).sum()
+                KurtDenominator = factorStdDate[secID] ** <span class="hljs-number">2</span>
+                factorKurtDate[secID] = KurtNumerator / KurtDenominator
+            <span class="hljs-keyword">else</span>:
+                factorStdDate[secID], factorSkewDate[secID], factorKurtDate[secID] = np.nan, np.nan, np.nan
 
-    <span class="hljs-comment"># &#x8BA1;&#x7B97;&#x672C;&#x6708;&#x56E0;&#x5B50;&#x6570;&#x503C;</span>
-    factorMonth = OrderedDict()
+    <span class="hljs-comment"># &#x5982;&#x679C;&#x4E0A;&#x4E00;&#x65E5;&#x65E0;&#x6570;&#x636E;</span>
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-comment"># &#x5C06;&#x5F53;&#x65E5;&#x7684;&#x56E0;&#x5B50;&#x8BBE;&#x4E3A;&#x7A7A;</span>
+        factorStdDate, factorSkewDate, factorKurtDate = [], [], []
 
-    <span class="hljs-comment"># &#x904D;&#x5386;&#x5F53;&#x6708;&#x8BC1;&#x5238;&#x6C60;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x80A1;&#x7968;</span>
-    <span class="hljs-keyword">for</span> secID <span class="hljs-keyword">in</span> stockPool:
-        <span class="hljs-comment"># &#x83B7;&#x53D6;&#x8BE5;&#x8BC1;&#x5238;&#x5728;&#x8BE5;&#x6708;&#x7684;&#x884C;&#x60C5;&#x5E8F;&#x5217;</span>
-        returnSec = returnMonth.loc[secID, :].sort_values(by=<span class="hljs-string">&apos;dates&apos;</span>).set_index(<span class="hljs-string">&apos;dates&apos;</span>)
-        dataTotal = pd.DataFrame({<span class="hljs-string">&apos;dailyReturn&apos;</span>: returnSec[<span class="hljs-string">&apos;DailyReturnSimple&apos;</span>],
-                                  <span class="hljs-string">&apos;MKT&apos;</span>: dataMKT.loc[BOMs[month]: EOMs[month]]}).dropna()
-        <span class="hljs-comment"># &#x5982;&#x679C;&#x5F53;&#x6708;&#x6709;&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x53C2;&#x4E0E;&#x8FD0;&#x7B97;</span>
-        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> dataTotal.empty:
-            X, y = sm.add_constant(dataTotal[<span class="hljs-string">&apos;MKT&apos;</span>]), dataTotal[<span class="hljs-string">&apos;dailyReturn&apos;</span>]
-            fit = sm.OLS(y, X).fit()
-            factorMonth[secID] = fit.resid.std()
-        <span class="hljs-keyword">else</span>:
-            factorMonth[secID] = np.nan
-
-    <span class="hljs-comment"># &#x5C06;&#x672C;&#x6708;&#x56E0;&#x5B50;&#x6570;&#x636E;&#x5B58;&#x5165;&#x603B;&#x6570;&#x636E;&#x4E2D;</span>
-    factorResult[month] = pd.Series(factorMonth, name=month)
+    <span class="hljs-comment"># &#x5C06;&#x672C;&#x65E5;&#x56E0;&#x5B50;&#x6570;&#x636E;&#x5B58;&#x5165;&#x603B;&#x6570;&#x636E;&#x4E2D;</span>
+    factorResult[<span class="hljs-string">&apos;Std&apos;</span>] = pd.Series(factorStdDate)
+    factorResult[<span class="hljs-string">&apos;Skew&apos;</span>] = pd.Series(factorSkewDate)
+    factorResult[<span class="hljs-string">&apos;Kurt&apos;</span>] = pd.Series(factorKurtDate)
 
     <span class="hljs-comment"># &#x663E;&#x793A;&#x5F53;&#x524D;&#x8FDB;&#x5EA6;</span>
-    number += <span class="hljs-number">1</span>; funcPerc = number / len(months)
+    index = dates[dates == thisDate].index.tolist()[<span class="hljs-number">0</span>]
+    funcPerc = len(dates[: index]) / len(dates)
     fun.processing_bar(funcPerc, funStart)
 
-print(<span class="hljs-string">&apos;\n&#x56E0;&#x5B50;&#x8BA1;&#x7B97;&#x5B8C;&#x6210;&apos;</span>)
+    <span class="hljs-keyword">return</span> factorResult
 
-<span class="hljs-comment"># &#x5C06;&#x6240;&#x6709;&#x671F;&#x9650;&#x7684;&#x6240;&#x6709;&#x8BC1;&#x5238;&#x7684;&#x56E0;&#x5B50;&#x503C;&#x8F6C;&#x53D8;&#x4E3A;&#x6570;&#x636E;&#x6846;&#x7C7B;&#x578B;(pd.DataFrame)</span>
-factorResult = pd.DataFrame(factorResult)
-factorResult.index = pd.Series(factorResult.index, name=<span class="hljs-string">&apos;secIDs&apos;</span>)
 
-<span class="hljs-comment"># &#x8F93;&#x51FA;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;</span>
-print(factorResult)
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    <span class="hljs-comment"># &#x8BA1;&#x7B97;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x65F6;&#x95F4;</span>
+    print(<span class="hljs-string">&apos;\n&#x56E0;&#x5B50;&#x8BA1;&#x7B97;&#x5F00;&#x59CB;&apos;</span>)
+    funStart = time.perf_counter()
 
-<span class="hljs-comment"># &#x5B58;&#x50A8;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;</span>
-factorResult.to_csv(<span class="hljs-string">&apos;factor/IVCAPM.csv&apos;</span>)
+    <span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x6709;&#x5E8F;&#x5B57;&#x5178;&#x5B58;&#x50A8;&#x56E0;&#x5B50;</span>
+    factorStdResult, factorSkewResult, factorKurtResult = OrderedDict(), OrderedDict(), OrderedDict()
+
+    <span class="hljs-comment"># &#x4F7F;&#x7528;&#x591A;&#x8FDB;&#x7A0B;&#x5E76;&#x53D1;&#x8BA1;&#x7B97;</span>
+    <span class="hljs-keyword">with</span> ProcessPoolExecutor() <span class="hljs-keyword">as</span> pool:
+        results = pool.map(get_results, dates)
+        results = list(zip(dates, results))
+
+    <span class="hljs-comment"># &#x6574;&#x7406;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;</span>
+    <span class="hljs-keyword">for</span> date, result <span class="hljs-keyword">in</span> results:
+        factorStdResult[date] = result[<span class="hljs-string">&apos;Std&apos;</span>]
+        factorSkewResult[date] = result[<span class="hljs-string">&apos;Skew&apos;</span>]
+        factorKurtResult[date] = result[<span class="hljs-string">&apos;Kurt&apos;</span>]
+
+    print(<span class="hljs-string">&apos;\n&#x56E0;&#x5B50;&#x8BA1;&#x7B97;&#x5B8C;&#x6210;&apos;</span>)
+
+    <span class="hljs-comment"># &#x5C06;&#x6240;&#x6709;&#x671F;&#x9650;&#x7684;&#x6240;&#x6709;&#x8BC1;&#x5238;&#x7684;&#x56E0;&#x5B50;&#x503C;&#x8F6C;&#x53D8;&#x4E3A;&#x6570;&#x636E;&#x6846;&#x7C7B;&#x578B;(pd.DataFrame)</span>
+    factorStdResult = pd.DataFrame(factorStdResult)
+    factorStdResult.index = pd.Series(factorStdResult.index, name=<span class="hljs-string">&apos;secIDs&apos;</span>)
+    factorSkewResult = pd.DataFrame(factorSkewResult)
+    factorSkewResult.index = pd.Series(factorSkewResult.index, name=<span class="hljs-string">&apos;secIDs&apos;</span>)
+    factorKurtResult = pd.DataFrame(factorKurtResult)
+    factorKurtResult.index = pd.Series(factorKurtResult.index, name=<span class="hljs-string">&apos;secIDs&apos;</span>)
+
+    <span class="hljs-comment"># &#x8F93;&#x51FA;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;</span>
+    print(factorStdResult)
+    print(factorSkewResult)
+    print(factorKurtResult)
+
+    <span class="hljs-comment"># &#x5B58;&#x50A8;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;</span>
+    factorStdResult.to_csv(<span class="hljs-string">&apos;factor/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009_iDStd.csv&apos;</span>)
+    factorSkewResult.to_csv(<span class="hljs-string">&apos;factor/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009_iDSkew.csv&apos;</span>)
+    factorKurtResult.to_csv(<span class="hljs-string">&apos;factor/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009_iDKurt.csv&apos;</span>)
 </code></pre>
 
                     
@@ -1150,10 +1224,10 @@ factorResult.to_csv(<span class="hljs-string">&apos;factor/IVCAPM.csv&apos;</spa
         </div>
 
         
-        <a href="../example/MKT.html" class="navigation navigation-prev " aria-label="Previous page: 计算市场因子 MKT"><i class="fa fa-angle-left"></i></a>
+        <a href="../example/MKT-SMB-HML.html" class="navigation navigation-prev " aria-label="Previous page: 计算 MKT/SMB/HML"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../example/test_IVCAPM.html" class="navigation navigation-next " aria-label="Next page: 进行因子有效性检验"><i class="fa fa-angle-right"></i></a>
+        <a href="../example/factorTest.html" class="navigation navigation-next " aria-label="Next page: 进行因子预处理与有效性检验"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

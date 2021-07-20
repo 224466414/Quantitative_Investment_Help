@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>进行因子有效性检验 | 量化投资程序 帮助文档</title>
+        <title>进行因子预处理与有效性检验 | 量化投资程序 帮助文档</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -62,7 +62,7 @@
     
     
     
-    <link rel="prev" href="../example/IVCAPM.html" />
+    <link rel="prev" href="../example/iDStd-iDSkew-iDKurt.html" />
     
 
         
@@ -72,10 +72,10 @@
         
     <div class="book"
         data-level="7.3"
-        data-chapter-title="进行因子有效性检验"
-        data-filepath="example/test_IVCAPM.md"
+        data-chapter-title="进行因子预处理与有效性检验"
+        data-filepath="example/factorTest.md"
         data-basepath=".."
-        data-revision="Tue Jul 20 2021 23:16:10 GMT+0800 (中国标准时间)"
+        data-revision="Tue Jul 20 2021 23:32:12 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -961,46 +961,46 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="7.1" data-path="example/MKT.html">
+        <li class="chapter " data-level="7.1" data-path="example/MKT-SMB-HML.html">
             
                 
-                    <a href="../example/MKT.html">
+                    <a href="../example/MKT-SMB-HML.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>7.1.</b>
                         
-                        计算市场因子 MKT
+                        计算 MKT/SMB/HML
                     </a>
             
             
         </li>
     
-        <li class="chapter " data-level="7.2" data-path="example/IVCAPM.html">
+        <li class="chapter " data-level="7.2" data-path="example/iDStd-iDSkew-iDKurt.html">
             
                 
-                    <a href="../example/IVCAPM.html">
+                    <a href="../example/iDStd-iDSkew-iDKurt.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>7.2.</b>
                         
-                        计算基于CAPM的特质性波动率 IVCAPM
+                        计算 iDStd/iDSkew/iDKurt
                     </a>
             
             
         </li>
     
-        <li class="chapter active" data-level="7.3" data-path="example/test_IVCAPM.html">
+        <li class="chapter active" data-level="7.3" data-path="example/factorTest.html">
             
                 
-                    <a href="../example/test_IVCAPM.html">
+                    <a href="../example/factorTest.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>7.3.</b>
                         
-                        进行因子有效性检验
+                        进行因子预处理与有效性检验
                     </a>
             
             
@@ -1044,7 +1044,7 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="&#x8FDB;&#x884C;&#x56E0;&#x5B50;&#x6709;&#x6548;&#x6027;&#x68C0;&#x9A8C;">&#x8FDB;&#x884C;&#x56E0;&#x5B50;&#x6709;&#x6548;&#x6027;&#x68C0;&#x9A8C;</h1>
+                        <h1 id="&#x8FDB;&#x884C;&#x56E0;&#x5B50;&#x9884;&#x5904;&#x7406;&#x4E0E;&#x6709;&#x6548;&#x6027;&#x68C0;&#x9A8C;">&#x8FDB;&#x884C;&#x56E0;&#x5B50;&#x9884;&#x5904;&#x7406;&#x4E0E;&#x6709;&#x6548;&#x6027;&#x68C0;&#x9A8C;</h1>
 <pre><code class="lang-python"><span class="hljs-comment"># -*- encoding: utf-8 -*-</span>
 <span class="hljs-string">&apos;&apos;&apos;
 Filename         :test.py
@@ -1058,12 +1058,16 @@ Version          :1.0
 <span class="hljs-keyword">import</span> sys
 sys.path.append(<span class="hljs-string">&apos;modules&apos;</span>)
 <span class="hljs-keyword">from</span> factorTest <span class="hljs-keyword">import</span> ICIRclass, groupclass
+<span class="hljs-keyword">from</span> factorProcess <span class="hljs-keyword">import</span> *
 
 
 <span class="hljs-comment"># &#x8BFB;&#x53D6;&#x56E0;&#x5B50;&#x6570;&#x636E;&#x4E0E;&#x671F;&#x671B;&#x6536;&#x76CA;&#x7387;</span>
-factor = pd.read_csv(<span class="hljs-string">&apos;factor/IVCAPM.csv&apos;</span>).set_index(<span class="hljs-string">&apos;secIDs&apos;</span>)
+factorPath = <span class="hljs-string">&apos;factor/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009_iDStd&apos;</span>
+pathResult = <span class="hljs-string">&apos;result/&#x4E1C;&#x65B9;&#x8BC1;&#x5238;_009/iDStd&apos;</span>
+
+factor = pd.read_csv(<span class="hljs-string">&apos;{}.csv&apos;</span>.format(factorPath)).set_index(<span class="hljs-string">&apos;secIDs&apos;</span>)
 EReturn = pd.read_csv(<span class="hljs-string">&apos;factor/EReturn.csv&apos;</span>).set_index(<span class="hljs-string">&apos;secIDs&apos;</span>)
-pathResult = <span class="hljs-string">&apos;result/IVCAPM&apos;</span>
+
 confidence = <span class="hljs-number">0.95</span>
 groupNumber = <span class="hljs-number">5</span>
 
@@ -1071,15 +1075,41 @@ groupNumber = <span class="hljs-number">5</span>
 beginDate = <span class="hljs-string">&apos;20050101&apos;</span>
 endDate = <span class="hljs-string">&apos;20210531&apos;</span>
 
+
+<span class="hljs-comment"># &#x5BF9;&#x56E0;&#x5B50;&#x4F9D;&#x6B21;&#x8FDB;&#x884C;&#x53BB;&#x6781;&#x503C;&#x3001;&#x4E2D;&#x6027;&#x5316;&#x3001;&#x6B63;&#x6001;&#x5316;&#x548C;&#x6807;&#x51C6;&#x5316;&#x5904;&#x7406;</span>
+describe(factor, type=<span class="hljs-string">&apos;save&apos;</span>, path=<span class="hljs-string">&apos;{}/describe/original&apos;</span>.format(pathResult))
+
+afterWinsorize = winsorize(factor)
+afterWinsorize.index = pd.Series(afterWinsorize.index, name=<span class="hljs-string">&apos;secIDs&apos;</span>)
+afterWinsorize.to_csv(<span class="hljs-string">&apos;{}_afterWinsorize.csv&apos;</span>.format(factorPath))
+describe(afterWinsorize, type=<span class="hljs-string">&apos;save&apos;</span>, path=<span class="hljs-string">&apos;{}/describe/afterWinsorize&apos;</span>.format(pathResult))
+
+afterNeutralize = neutralize(afterWinsorize)
+afterNeutralize.index = pd.Series(afterNeutralize.index, name=<span class="hljs-string">&apos;secIDs&apos;</span>)
+afterNeutralize.to_csv(<span class="hljs-string">&apos;{}_afterNeutralize.csv&apos;</span>.format(factorPath))
+describe(afterNeutralize, type=<span class="hljs-string">&apos;save&apos;</span>, path=<span class="hljs-string">&apos;{}/describe/afterNeutralize&apos;</span>.format(pathResult))
+
+afterNormalize = normalize(afterNeutralize + <span class="hljs-number">1</span>, exception=[<span class="hljs-string">&apos;20140129&apos;</span>, <span class="hljs-string">&apos;20150120&apos;</span>])
+afterNormalize.index = pd.Series(afterNormalize.index, name=<span class="hljs-string">&apos;secIDs&apos;</span>)
+afterNormalize.to_csv(<span class="hljs-string">&apos;{}_afterNormalize.csv&apos;</span>.format(factorPath))
+describe(afterNormalize, type=<span class="hljs-string">&apos;save&apos;</span>, path=<span class="hljs-string">&apos;{}/describe/afterNormalize&apos;</span>.format(pathResult))
+
+afterStandardize = standardize(afterNormalize)
+afterStandardize.index = pd.Series(afterStandardize.index, name=<span class="hljs-string">&apos;secIDs&apos;</span>)
+afterStandardize.to_csv(<span class="hljs-string">&apos;{}_afterStandardize.csv&apos;</span>.format(factorPath))
+describe(afterStandardize, type=<span class="hljs-string">&apos;save&apos;</span>, path=<span class="hljs-string">&apos;{}/describe/afterStandardize&apos;</span>.format(pathResult))
+
+
 <span class="hljs-comment"># &#x8FDB;&#x884C;ICIR&#x6CD5;&#x68C0;&#x9A8C;</span>
-ICIRClass = ICIRclass(factor, EReturn, beginDate, endDate, confidence)
+ICIRClass = ICIRclass(beginDate, endDate, factor, confidence, frequency=<span class="hljs-number">1</span>)
 
 ICIRClass.get_result()
 
 ICIRClass.save_result(pathResult)
 
+
 <span class="hljs-comment"># &#x8FDB;&#x884C;&#x5206;&#x7EC4;&#x6CD5;&#x68C0;&#x9A8C;</span>
-groupClass = groupclass(factor, groupNumber, beginDate, endDate)
+groupClass = groupclass(beginDate, endDate, factor, groupNumber, ascending=<span class="hljs-keyword">True</span>, frequency=<span class="hljs-number">1</span>)
 
 groupClass.get_result(type=<span class="hljs-string">&apos;&#x7B49;&#x6743;&#x91CD;&apos;</span>)
 
@@ -1095,7 +1125,7 @@ groupClass.save_result(pathResult)
         </div>
 
         
-        <a href="../example/IVCAPM.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 计算基于CAPM的特质性波动率 IVCAPM"><i class="fa fa-angle-left"></i></a>
+        <a href="../example/iDStd-iDSkew-iDKurt.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 计算 iDStd/iDSkew/iDKurt"><i class="fa fa-angle-left"></i></a>
         
         
     </div>
