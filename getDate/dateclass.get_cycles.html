@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>进行因子有效性检验 | 量化投资程序 帮助文档</title>
+        <title>dateclass.get_cycles() | 量化投资程序 帮助文档</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -61,8 +61,10 @@
         
     
     
+    <link rel="next" href="../getDate/dateclass.get_BOCs.html" />
     
-    <link rel="prev" href="../example/IVCAPM.html" />
+    
+    <link rel="prev" href="../getDate/cycles.html" />
     
 
         
@@ -71,9 +73,9 @@
         
         
     <div class="book"
-        data-level="7.3"
-        data-chapter-title="进行因子有效性检验"
-        data-filepath="example/test_IVCAPM.md"
+        data-level="1.4.1"
+        data-chapter-title="dateclass.get_cycles()"
+        data-filepath="getDate/dateclass.get_cycles.md"
         data-basepath=".."
         data-revision="Tue Jul 20 2021 22:58:24 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -335,7 +337,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="getDate/dateclass.get_cycles.html">
+        <li class="chapter active" data-level="1.4.1" data-path="getDate/dateclass.get_cycles.html">
             
                 
                     <a href="../getDate/dateclass.get_cycles.html">
@@ -991,7 +993,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="7.3" data-path="example/test_IVCAPM.html">
+        <li class="chapter " data-level="7.3" data-path="example/test_IVCAPM.html">
             
                 
                     <a href="../example/test_IVCAPM.html">
@@ -1044,47 +1046,70 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="&#x8FDB;&#x884C;&#x56E0;&#x5B50;&#x6709;&#x6548;&#x6027;&#x68C0;&#x9A8C;">&#x8FDB;&#x884C;&#x56E0;&#x5B50;&#x6709;&#x6548;&#x6027;&#x68C0;&#x9A8C;</h1>
-<pre><code class="lang-python"><span class="hljs-comment"># -*- encoding: utf-8 -*-</span>
-<span class="hljs-string">&apos;&apos;&apos;
-Filename         :test.py
-Description      :&#x8BE5;&#x6A21;&#x5757;&#x7528;&#x4E8E;&#x8BA1;&#x7B97;&#x5355;&#x56E0;&#x5B50;&#x68C0;&#x9A8C;&#x7ED3;&#x679C;&#x5E76;&#x8FDB;&#x884C;&#x5B58;&#x50A8;
-Time             :2021/06/25 11:47:58
-Author           :&#x91CF;&#x5316;&#x6295;&#x8D44;1&#x7EC4;
-Version          :1.0
-&apos;&apos;&apos;</span>
-
-<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
-<span class="hljs-keyword">import</span> sys
+                        <h1 id="dateclassgetcycles">dateclass.get_cycles()</h1>
+<pre><code class="lang-python">months = dateClass.get_cycles(beginDate, endDate, showProcess=<span class="hljs-keyword">True</span>)
+</code></pre>
+<ol>
+<li><p>&#x91CA;&#x4E49;</p>
+<p> &#x83B7;&#x53D6;&#x4E00;&#x5B9A;&#x65E5;&#x671F;&#x8303;&#x56F4;&#x5185;&#x7684;&#x6240;&#x6709;&#x5468;&#x671F;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5728;&#x5468;&#x671F;&#x957F;&#x5EA6;&#x4E3A;20&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5BFC;&#x51FA;2005&#x5E74;1&#x6708;1&#x65E5;&#x81F3;2021&#x5E74;5&#x6708;31&#x65E5;&#x4E4B;&#x95F4;&#x7684;&#x6240;&#x6709;&#x5468;&#x671F;&#x3002;</p>
+</li>
+<li><p>&#x53C2;&#x6570;</p>
+<p><code>beginDate</code></p>
+<ul>
+<li>&#x91CA;&#x4E49;<br>  &#x5BFC;&#x51FA;&#x7684;&#x5468;&#x671F;&#x6700;&#x65E9;&#x4E0D;&#x65E9;&#x4E8E;&#x8BE5;&#x65E5;&#x671F;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x5B57;&#x7B26;&#x578B;(str)</li>
+</ul>
+<p><code>endDate</code></p>
+<ul>
+<li>&#x91CA;&#x4E49;<br>  &#x5BFC;&#x51FA;&#x7684;&#x5468;&#x671F;&#x6700;&#x665A;&#x4E0D;&#x665A;&#x4E8E;&#x8BE5;&#x65E5;&#x671F;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x5B57;&#x7B26;&#x578B;(str)</li>
+</ul>
+<p><code>showProcess</code> (optional)</p>
+<ul>
+<li>&#x91CA;&#x4E49;<br>  &#x662F;&#x5426;&#x663E;&#x793A;&#x8FDB;&#x5EA6;&#x6761;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x5E03;&#x5C14;&#x578B;(bool)</li>
+</ul>
+</li>
+<li><p>&#x8FD4;&#x56DE;</p>
+<ul>
+<li>&#x91CA;&#x4E49;<br>  &#x6307;&#x5B9A;&#x65F6;&#x95F4;&#x8303;&#x56F4;&#x5185;&#x7684;&#x5468;&#x671F;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x5E8F;&#x5217;(pd.Series)<br>  &#x6309;&#x65F6;&#x95F4;&#x987A;&#x5E8F;&#x4ECE;&#x524D;&#x5230;&#x540E;&#x6392;&#x5217;&#x3002;&#x5176;&#x952E;&#x4E3A;&#x5E8F;&#x53F7;&#xFF0C;&#x7C7B;&#x578B;&#x4E3A;&#x6574;&#x578B;(int)&#xFF1B;&#x5176;&#x503C;&#x4E3A;&#x5468;&#x671F;&#xFF0C;&#x7C7B;&#x578B;&#x4E3A;&#x6574;&#x578B;(int)</li>
+</ul>
+</li>
+<li><p>&#x4F8B;&#x5B50;</p>
+<ul>
+<li><p>&#x8F93;&#x5165;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> sys
 sys.path.append(<span class="hljs-string">&apos;modules&apos;</span>)
-<span class="hljs-keyword">from</span> factorTest <span class="hljs-keyword">import</span> ICIRclass, groupclass
+<span class="hljs-keyword">from</span> getDate <span class="hljs-keyword">import</span> dateclass
 
+dateClass = dateclass(cycleLength=<span class="hljs-number">20</span>)
 
-<span class="hljs-comment"># &#x8BFB;&#x53D6;&#x56E0;&#x5B50;&#x6570;&#x636E;&#x4E0E;&#x671F;&#x671B;&#x6536;&#x76CA;&#x7387;</span>
-factor = pd.read_csv(<span class="hljs-string">&apos;factor/IVCAPM.csv&apos;</span>).set_index(<span class="hljs-string">&apos;secIDs&apos;</span>)
-EReturn = pd.read_csv(<span class="hljs-string">&apos;factor/EReturn.csv&apos;</span>).set_index(<span class="hljs-string">&apos;secIDs&apos;</span>)
-pathResult = <span class="hljs-string">&apos;result/IVCAPM&apos;</span>
-confidence = <span class="hljs-number">0.95</span>
-groupNumber = <span class="hljs-number">5</span>
-
-<span class="hljs-comment"># &#x8BBE;&#x5B9A;&#x5F00;&#x59CB;&#x4E0E;&#x7ED3;&#x675F;&#x65E5;&#x671F;</span>
 beginDate = <span class="hljs-string">&apos;20050101&apos;</span>
 endDate = <span class="hljs-string">&apos;20210531&apos;</span>
 
-<span class="hljs-comment"># &#x8FDB;&#x884C;ICIR&#x6CD5;&#x68C0;&#x9A8C;</span>
-ICIRClass = ICIRclass(factor, EReturn, beginDate, endDate, confidence)
-
-ICIRClass.get_result()
-
-ICIRClass.save_result(pathResult)
-
-<span class="hljs-comment"># &#x8FDB;&#x884C;&#x5206;&#x7EC4;&#x6CD5;&#x68C0;&#x9A8C;</span>
-groupClass = groupclass(factor, groupNumber, beginDate, endDate)
-
-groupClass.get_result(type=<span class="hljs-string">&apos;&#x7B49;&#x6743;&#x91CD;&apos;</span>)
-
-groupClass.save_result(pathResult)
+cycles = dateClass.get_cycles(beginDate, endDate)
+print(cycles)
 </code></pre>
+</li>
+<li><p>&#x8F93;&#x51FA;</p>
+<pre><code class="lang-python"><span class="hljs-number">0</span>        <span class="hljs-number">0</span>
+<span class="hljs-number">1</span>        <span class="hljs-number">1</span>
+<span class="hljs-number">2</span>        <span class="hljs-number">2</span>
+<span class="hljs-number">3</span>        <span class="hljs-number">3</span>
+<span class="hljs-number">4</span>        <span class="hljs-number">4</span>
+  ...
+<span class="hljs-number">194</span>    <span class="hljs-number">194</span>
+<span class="hljs-number">195</span>    <span class="hljs-number">195</span>
+<span class="hljs-number">196</span>    <span class="hljs-number">196</span>
+<span class="hljs-number">197</span>    <span class="hljs-number">197</span>
+<span class="hljs-number">198</span>    <span class="hljs-number">198</span>
+Name: cycles, Length: <span class="hljs-number">199</span>, dtype: int64
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
 
                     
                     </section>
@@ -1095,8 +1120,10 @@ groupClass.save_result(pathResult)
         </div>
 
         
-        <a href="../example/IVCAPM.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 计算基于CAPM的特质性波动率 IVCAPM"><i class="fa fa-angle-left"></i></a>
+        <a href="../getDate/cycles.html" class="navigation navigation-prev " aria-label="Previous page: 针对周期的方法"><i class="fa fa-angle-left"></i></a>
         
+        
+        <a href="../getDate/dateclass.get_BOCs.html" class="navigation navigation-next " aria-label="Next page: dateclass.get_BOCs()"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
