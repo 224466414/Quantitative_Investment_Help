@@ -77,7 +77,7 @@
         data-chapter-title="groupclass()"
         data-filepath="factorTest/groupclass.md"
         data-basepath=".."
-        data-revision="Tue Jul 20 2021 23:03:48 GMT+0800 (中国标准时间)"
+        data-revision="Tue Jul 20 2021 23:16:10 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -1055,39 +1055,37 @@ groupClass = groupclass(beginDate, endDate, factor, groupNumber, ascending=<span
 <p> &#x521B;&#x5EFA;&#x5206;&#x5C42;&#x6CD5;&#x68C0;&#x9A8C;&#x5BF9;&#x8C61;&#x3002;&#x5FC5;&#x987B;&#x8981;&#x5148;&#x521B;&#x5EFA;&#x8BE5;&#x5BF9;&#x8C61;&#xFF0C;&#x624D;&#x53EF;&#x901A;&#x8FC7;&#x5176;&#x9644;&#x5E26;&#x7684;&#x5404;&#x7C7B;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x5206;&#x5C42;&#x6CD5;&#x68C0;&#x9A8C;&#x3002;</p>
 </li>
 <li><p>&#x53C2;&#x6570;</p>
+<p><code>beginDate</code></p>
+<ul>
+<li>&#x91CA;&#x4E49;<br>  &#x68C0;&#x9A8C;&#x5F00;&#x59CB;&#x7684;&#x65E5;&#x671F;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x5B57;&#x7B26;&#x578B;(str)</li>
+</ul>
+<p><code>endDate</code></p>
+<ul>
+<li>&#x91CA;&#x4E49;<br>  &#x68C0;&#x9A8C;&#x7ED3;&#x675F;&#x7684;&#x65E5;&#x671F;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x5B57;&#x7B26;&#x578B;(str)</li>
+</ul>
+<p><code>factor</code></p>
+<ul>
+<li>&#x91CA;&#x4E49;<br>  &#x56E0;&#x5B50;&#x503C;&#x6570;&#x636E;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x6570;&#x636E;&#x6846;(pd.DataFrame)</li>
+</ul>
+<p><code>groupNumebr</code></p>
+<ul>
+<li>&#x91CA;&#x4E49;<br>  &#x5206;&#x7EC4;&#x7684;&#x7EC4;&#x6570;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x6574;&#x578B;(int)</li>
+</ul>
+<p><code>ascending</code> (optional)</p>
+<ul>
+<li>&#x91CA;&#x4E49;<br>  &#x68C0;&#x9A8C;&#x56E0;&#x5B50;&#x7684;&#x6392;&#x5E8F;&#x987A;&#x5E8F;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;True&#x3002;&#x82E5;&#x56E0;&#x5B50;&#x5927;&#x5C0F;&#x4E0E;&#x671F;&#x671B;&#x6536;&#x76CA;&#x8D1F;&#x76F8;&#x5173;&#xFF0C;&#x5219;&#x8BBE;&#x5B9A;&#x4E3A;True&#xFF1B;&#x82E5;&#x56E0;&#x5B50;&#x5927;&#x5C0F;&#x4E0E;&#x671F;&#x671B;&#x6536;&#x76CA;&#x6B63;&#x76F8;&#x5173;&#xFF0C;&#x5219;&#x8BBE;&#x5B9A;&#x4E3A;False</li>
+<li>&#x7C7B;&#x578B;<br>  &#x5E03;&#x5C14;&#x578B;(bool)</li>
+</ul>
+<p><code>frequency</code> (optional)</p>
+<ul>
+<li>&#x91CA;&#x4E49;<br>  &#x8FDB;&#x884C;&#x8C03;&#x4ED3;&#x7684;&#x5468;&#x671F;&#x5929;&#x6570;&#x3002;&#x5982;&#x679C;&#x8BBE;&#x5B9A;&#x4E3A;1&#x5219;&#x8FDB;&#x884C;&#x65E5;&#x9891;&#x68C0;&#x9A8C;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x6574;&#x578B;(int)</li>
+</ul>
 </li>
-</ol>
-<p>  <code>beginDate</code></p>
-<pre><code>- &#x91CA;&#x4E49;  
-    &#x68C0;&#x9A8C;&#x5F00;&#x59CB;&#x7684;&#x65E5;&#x671F;
-- &#x7C7B;&#x578B;  
-    &#x5B57;&#x7B26;&#x578B;(str)
-</code></pre><p>  <code>endDate</code></p>
-<pre><code>- &#x91CA;&#x4E49;  
-    &#x68C0;&#x9A8C;&#x7ED3;&#x675F;&#x7684;&#x65E5;&#x671F;
-- &#x7C7B;&#x578B;  
-    &#x5B57;&#x7B26;&#x578B;(str)
-</code></pre><p>  <code>factor</code></p>
-<pre><code>- &#x91CA;&#x4E49;  
-    &#x56E0;&#x5B50;&#x503C;&#x6570;&#x636E;
-- &#x7C7B;&#x578B;  
-    &#x6570;&#x636E;&#x6846;(pd.DataFrame)
-</code></pre><p>  <code>groupNumebr</code></p>
-<pre><code>- &#x91CA;&#x4E49;  
-    &#x5206;&#x7EC4;&#x7684;&#x7EC4;&#x6570;
-- &#x7C7B;&#x578B;  
-    &#x6574;&#x578B;(int)
-</code></pre><p>  <code>ascending</code> (optional)</p>
-<pre><code>- &#x91CA;&#x4E49;  
-    &#x68C0;&#x9A8C;&#x56E0;&#x5B50;&#x7684;&#x6392;&#x5E8F;&#x987A;&#x5E8F;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;True&#x3002;&#x82E5;&#x56E0;&#x5B50;&#x5927;&#x5C0F;&#x4E0E;&#x671F;&#x671B;&#x6536;&#x76CA;&#x8D1F;&#x76F8;&#x5173;&#xFF0C;&#x5219;&#x8BBE;&#x5B9A;&#x4E3A;True&#xFF1B;&#x82E5;&#x56E0;&#x5B50;&#x5927;&#x5C0F;&#x4E0E;&#x671F;&#x671B;&#x6536;&#x76CA;&#x6B63;&#x76F8;&#x5173;&#xFF0C;&#x5219;&#x8BBE;&#x5B9A;&#x4E3A;False
-- &#x7C7B;&#x578B;  
-    &#x5E03;&#x5C14;&#x578B;(bool)
-</code></pre><p>  <code>frequency</code> (optional)</p>
-<pre><code>- &#x91CA;&#x4E49;  
-    &#x8FDB;&#x884C;&#x8C03;&#x4ED3;&#x7684;&#x5468;&#x671F;&#x5929;&#x6570;&#x3002;&#x5982;&#x679C;&#x8BBE;&#x5B9A;&#x4E3A;1&#x5219;&#x8FDB;&#x884C;&#x65E5;&#x9891;&#x68C0;&#x9A8C;
-- &#x7C7B;&#x578B;  
-    &#x6574;&#x578B;(int)
-</code></pre><ol>
 <li><p>&#x8FD4;&#x56DE;</p>
 <p> &#x5206;&#x5C42;&#x6CD5;&#x68C0;&#x9A8C;&#x5BF9;&#x8C61;</p>
 </li>
