@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>dateclass.get_afterDate() | 量化投资程序 帮助文档</title>
+        <title>dateclass.get_BOM() | 量化投资程序 帮助文档</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -61,10 +61,10 @@
         
     
     
-    <link rel="next" href="../getDate/months.html" />
+    <link rel="next" href="../getDate/dateclass.get_EOM.html" />
     
     
-    <link rel="prev" href="../getDate/dateclass.get_beforeDate.html" />
+    <link rel="prev" href="../getDate/dateclass.get_months.html" />
     
 
         
@@ -73,9 +73,9 @@
         
         
     <div class="book"
-        data-level="1.2.3"
-        data-chapter-title="dateclass.get_afterDate()"
-        data-filepath="getDate/dateclass.get_afterDate.md"
+        data-level="1.3.2"
+        data-chapter-title="dateclass.get_BOM()"
+        data-filepath="getDate/dateclass.get_BOM.md"
         data-basepath=".."
         data-revision="Sat Jul 31 2021 13:00:33 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -190,7 +190,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.3" data-path="getDate/dateclass.get_afterDate.html">
+        <li class="chapter " data-level="1.2.3" data-path="getDate/dateclass.get_afterDate.html">
             
                 
                     <a href="../getDate/dateclass.get_afterDate.html">
@@ -241,7 +241,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="getDate/dateclass.get_BOM.html">
+        <li class="chapter active" data-level="1.3.2" data-path="getDate/dateclass.get_BOM.html">
             
                 
                     <a href="../getDate/dateclass.get_BOM.html">
@@ -1157,59 +1157,83 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="dateclassgetafterdate">dateclass.get_afterDate()</h1>
-<pre><code class="lang-python">afterDate = dateClass.get_afterDate(currentDate, dateSpan)
+                        <h1 id="dateclassgetbom">dateclass.get_BOM()</h1>
+<pre><code class="lang-python">BOM = dateClass.get_BOM(targetMonth)
 </code></pre>
 <ol>
 <li><p>&#x91CA;&#x4E49;</p>
-<p> &#x83B7;&#x53D6;&#x6307;&#x5B9A;&#x4EA4;&#x6613;&#x65E5;&#x540E;n&#x5929;&#x7684;&#x4EA4;&#x6613;&#x65E5;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5BFC;&#x51FA;2006&#x5E74;12&#x6708;9&#x65E5;&#x4E4B;&#x540E;&#x7684;&#x7B2C;20&#x4E2A;&#x4EA4;&#x6613;&#x65E5;&#x3002;</p>
+<p> &#x83B7;&#x53D6;&#x6307;&#x5B9A;&#x6708;&#x4EFD;&#x7684;&#x6708;&#x521D;&#x4EA4;&#x6613;&#x65E5;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5BFC;&#x51FA;2005&#x5E74;1&#x6708;&#x81F3;2021&#x5E74;5&#x6708;&#x4E4B;&#x95F4;&#x7684;&#x6240;&#x6709;&#x6708;&#x4EFD;&#x7684;&#x6708;&#x521D;&#x4EA4;&#x6613;&#x65E5;&#x3002;</p>
 </li>
 <li><p>&#x53C2;&#x6570;</p>
-<p><code>currentDate</code></p>
+<p><code>targetMonth</code></p>
 <ul>
-<li>&#x91CA;&#x4E49;<br>  &#x6307;&#x5B9A;&#x7684;&#x5F53;&#x524D;&#x4EA4;&#x6613;&#x65E5;<br>  &#x53EF;&#x4F20;&#x5165;&#x65E5;&#x671F;&#x6570;&#xFF08;&#x5982;20050104&#xFF09;&#x6216;&#x65E5;&#x671F;&#x5E8F;&#x53F7;&#xFF08;&#x5982;199&#x5BF9;&#x5E94;&#x7B2C;200&#x5929;&#xFF09;&#x3002;</li>
-<li>&#x7C7B;&#x578B;<br>  &#x6574;&#x578B;(int)</li>
-</ul>
-<p><code>dateSpan</code></p>
-<ul>
-<li>&#x91CA;&#x4E49;<br>  &#x5411;&#x540E;&#x8BA1;&#x7B97;&#x4EA4;&#x6613;&#x65E5;&#x7684;&#x65E5;&#x671F;&#x8DE8;&#x5EA6;</li>
-<li>&#x7C7B;&#x578B;<br>  &#x6574;&#x578B;(int)</li>
+<li>&#x91CA;&#x4E49;<br>  &#x9700;&#x8981;&#x83B7;&#x53D6;&#x6708;&#x521D;&#x4EA4;&#x6613;&#x65E5;&#x7684;&#x6307;&#x5B9A;&#x6708;&#x4EFD;<br>  &#x53EF;&#x4F20;&#x5165;&#x6708;&#x4EFD;&#x6570;&#xFF08;&#x5982;200501&#xFF09;&#x6216;&#x6708;&#x4EFD;&#x5E8F;&#x53F7;&#xFF08;&#x5982;19&#x5BF9;&#x5E94;&#x7B2C;20&#x6708;&#xFF09;&#x3002;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x6574;&#x578B;(int), &#x5217;&#x8868;(list), &#x4E00;&#x7EF4;&#x6570;&#x7EC4;(np.ndarray), &#x5E8F;&#x5217;(pd.Series) &#x5747;&#x53EF;</li>
 </ul>
 </li>
 <li><p>&#x8FD4;&#x56DE;</p>
 <ul>
-<li>&#x91CA;&#x4E49;<br>  &#x6307;&#x5B9A;&#x4EA4;&#x6613;&#x65E5;&#x540E;n&#x5929;&#x7684;&#x4EA4;&#x6613;&#x65E5;&#x5E8F;&#x53F7;</li>
-<li>&#x7C7B;&#x578B;<br>  &#x6574;&#x578B;(int)</li>
+<li>&#x91CA;&#x4E49;<br>  &#x6307;&#x5B9A;&#x6708;&#x4EFD;&#x7684;&#x6708;&#x521D;&#x4EA4;&#x6613;&#x65E5;&#x5E8F;&#x53F7;</li>
+<li>&#x7C7B;&#x578B;<br>  &#x5982;&#x679C;&#x8F93;&#x5165;&#x7684;&#x662F;&#x6574;&#x578B;(int)&#xFF0C;&#x5219;&#x8FD4;&#x56DE;&#x6574;&#x578B;(int)<br>  &#x5982;&#x679C;&#x8F93;&#x5165;&#x7684;&#x662F;&#x5217;&#x8868;(list)&#x3001;&#x4E00;&#x7EF4;&#x6570;&#x7EC4;(np.ndarray)&#x3001;&#x5E8F;&#x5217;(pd.Series)&#xFF0C;&#x5747;&#x8FD4;&#x56DE;&#x4E00;&#x7EF4;&#x6570;&#x7EC4;(np.ndarray)</li>
 </ul>
 </li>
 <li><p>&#x4F8B;&#x5B50;</p>
 <ul>
 <li><p>&#x8F93;&#x5165;</p>
-<pre><code class="lang-python"><span class="hljs-keyword">import</span> sys
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> sys
 sys.path.append(<span class="hljs-string">&apos;modules&apos;</span>)
 <span class="hljs-keyword">from</span> getDate <span class="hljs-keyword">import</span> dateclass
 
 dateClass = dateclass()
 
-<span class="hljs-comment"># &#x4F20;&#x5165;&#x65E5;&#x671F;&#x6570;&#x53C2;&#x6570;</span>
-currentDate = <span class="hljs-number">20061229</span>
-dateSpan = <span class="hljs-number">20</span>
-beforeDate = dateClass.get_afterDate(currentDate, dateSpan)
-print(<span class="hljs-string">&apos;&#x4F20;&#x5165;&#x65E5;&#x671F;&#x6570;&#x53C2;&#x6570;&#x7684;&#x7ED3;&#x679C;&#x4E3A;:\n&apos;</span>, beforeDate, <span class="hljs-string">&apos;\n&apos;</span>)
+<span class="hljs-comment"># &#x83B7;&#x53D6;2005&#x5E74;1&#x6708;1&#x65E5;&#x81F3;2021&#x5E74;5&#x6708;31&#x65E5;&#x4E4B;&#x95F4;&#x7684;&#x6708;&#x4EFD;&#x6570;</span>
+beginDate = <span class="hljs-number">20050101</span>
+endDate = <span class="hljs-number">20210531</span>
+months = dateClass.get_months(beginDate, endDate)
 
-<span class="hljs-comment"># &#x4F20;&#x5165;&#x65E5;&#x671F;&#x6570;&#x53C2;&#x6570;</span>
-currentDate = <span class="hljs-number">482</span>
-dateSpan = <span class="hljs-number">20</span>
-beforeDate = dateClass.get_afterDate(currentDate, dateSpan)
-print(<span class="hljs-string">&apos;&#x4F20;&#x5165;&#x65E5;&#x671F;&#x6570;&#x53C2;&#x6570;&#x7684;&#x7ED3;&#x679C;&#x4E3A;:\n&apos;</span>, beforeDate, <span class="hljs-string">&apos;\n&apos;</span>)
+<span class="hljs-comment"># &#x4F20;&#x5165;&#x6708;&#x4EFD;&#x5E8F;&#x53F7;&#x53C2;&#x6570;(&#x6574;&#x578B;)</span>
+month = months[<span class="hljs-number">10</span>]
+BOM = dateClass.get_BOM(month)
+print(<span class="hljs-string">&apos;&#x4F20;&#x5165;&#x6708;&#x4EFD;&#x5E8F;&#x53F7;&#x53C2;&#x6570;(&#x6574;&#x578B;)&#x7684;&#x7ED3;&#x679C;&#x4E3A;:\n&apos;</span>, BOM, <span class="hljs-string">&apos;\n&apos;</span>)
+
+<span class="hljs-comment"># &#x4F20;&#x5165;&#x6708;&#x4EFD;&#x5E8F;&#x53F7;&#x53C2;&#x6570;(&#x5217;&#x8868;)</span>
+months_list = months.tolist()
+BOM = dateClass.get_BOM(months_list)
+print(<span class="hljs-string">&apos;&#x4F20;&#x5165;&#x6708;&#x4EFD;&#x5E8F;&#x53F7;&#x53C2;&#x6570;(&#x5217;&#x8868;)&#x7684;&#x7ED3;&#x679C;&#x4E3A;:\n&apos;</span>, BOM, <span class="hljs-string">&apos;\n&apos;</span>)
+
+<span class="hljs-comment"># &#x4F20;&#x5165;&#x6708;&#x4EFD;&#x5E8F;&#x53F7;&#x53C2;&#x6570;(&#x5E8F;&#x5217;)</span>
+months_series = pd.Series(months)
+BOM = dateClass.get_BOM(months_series)
+print(<span class="hljs-string">&apos;&#x4F20;&#x5165;&#x6708;&#x4EFD;&#x5E8F;&#x53F7;&#x53C2;&#x6570;(&#x5E8F;&#x5217;)&#x7684;&#x7ED3;&#x679C;&#x4E3A;:\n&apos;</span>, BOM, <span class="hljs-string">&apos;\n&apos;</span>)
+
+<span class="hljs-comment"># &#x4F20;&#x5165;&#x6708;&#x4EFD;&#x5E8F;&#x53F7;&#x53C2;&#x6570;(&#x4E00;&#x7EF4;&#x6570;&#x7EC4;)</span>
+months_numpy = np.array(months)
+BOM = dateClass.get_BOM(months_numpy)
+print(<span class="hljs-string">&apos;&#x4F20;&#x5165;&#x6708;&#x4EFD;&#x5E8F;&#x53F7;&#x53C2;&#x6570;(&#x4E00;&#x7EF4;&#x6570;&#x7EC4;)&#x7684;&#x7ED3;&#x679C;&#x4E3A;:\n&apos;</span>, BOM, <span class="hljs-string">&apos;\n&apos;</span>)
+
+<span class="hljs-comment"># &#x4F20;&#x5165;&#x6708;&#x4EFD;&#x6570;&#x53C2;&#x6570;(&#x4E00;&#x7EF4;&#x6570;&#x7EC4;)</span>
+months_Codes = dateClass.month_Index2Code(months)
+BOM = dateClass.get_BOM(months_Codes)
+print(<span class="hljs-string">&apos;&#x4F20;&#x5165;&#x6708;&#x4EFD;&#x6570;&#x53C2;&#x6570;(&#x4E00;&#x7EF4;&#x6570;&#x7EC4;)&#x7684;&#x7ED3;&#x679C;&#x4E3A;:\n&apos;</span>, BOM, <span class="hljs-string">&apos;\n&apos;</span>)
 </code></pre>
 </li>
 <li><p>&#x8F93;&#x51FA;</p>
-<pre><code class="lang-python">&#x4F20;&#x5165;&#x65E5;&#x671F;&#x6570;&#x53C2;&#x6570;&#x7684;&#x7ED3;&#x679C;&#x4E3A;:
-<span class="hljs-number">502</span> 
+<pre><code class="lang-python">&#x4F20;&#x5165;&#x6708;&#x4EFD;&#x5E8F;&#x53F7;&#x53C2;&#x6570;(&#x6574;&#x578B;)&#x7684;&#x7ED3;&#x679C;&#x4E3A;:
+<span class="hljs-number">198</span> 
 
-&#x4F20;&#x5165;&#x65E5;&#x671F;&#x6570;&#x53C2;&#x6570;&#x7684;&#x7ED3;&#x679C;&#x4E3A;:
-<span class="hljs-number">502</span>
+&#x4F20;&#x5165;&#x6708;&#x4EFD;&#x5E8F;&#x53F7;&#x53C2;&#x6570;(&#x5217;&#x8868;)&#x7684;&#x7ED3;&#x679C;&#x4E3A;:
+[   <span class="hljs-number">0</span>   <span class="hljs-number">20</span>   <span class="hljs-number">33</span> ... <span class="hljs-number">3924</span> <span class="hljs-number">3947</span> <span class="hljs-number">3968</span>]
+
+&#x4F20;&#x5165;&#x6708;&#x4EFD;&#x5E8F;&#x53F7;&#x53C2;&#x6570;(&#x5E8F;&#x5217;)&#x7684;&#x7ED3;&#x679C;&#x4E3A;:
+[   <span class="hljs-number">0</span>   <span class="hljs-number">20</span>   <span class="hljs-number">33</span> ... <span class="hljs-number">3924</span> <span class="hljs-number">3947</span> <span class="hljs-number">3968</span>]
+
+&#x4F20;&#x5165;&#x6708;&#x4EFD;&#x5E8F;&#x53F7;&#x53C2;&#x6570;(&#x4E00;&#x7EF4;&#x6570;&#x7EC4;)&#x7684;&#x7ED3;&#x679C;&#x4E3A;:
+[   <span class="hljs-number">0</span>   <span class="hljs-number">20</span>   <span class="hljs-number">33</span> ... <span class="hljs-number">3924</span> <span class="hljs-number">3947</span> <span class="hljs-number">3968</span>]
+
+&#x4F20;&#x5165;&#x6708;&#x4EFD;&#x6570;&#x53C2;&#x6570;(&#x4E00;&#x7EF4;&#x6570;&#x7EC4;)&#x7684;&#x7ED3;&#x679C;&#x4E3A;:
+[   <span class="hljs-number">0</span>   <span class="hljs-number">20</span>   <span class="hljs-number">33</span> ... <span class="hljs-number">3924</span> <span class="hljs-number">3947</span> <span class="hljs-number">3968</span>]
 </code></pre>
 </li>
 </ul>
@@ -1225,10 +1249,10 @@ print(<span class="hljs-string">&apos;&#x4F20;&#x5165;&#x65E5;&#x671F;&#x6570;&#
         </div>
 
         
-        <a href="../getDate/dateclass.get_beforeDate.html" class="navigation navigation-prev " aria-label="Previous page: dateclass.get_beforeDate()"><i class="fa fa-angle-left"></i></a>
+        <a href="../getDate/dateclass.get_months.html" class="navigation navigation-prev " aria-label="Previous page: dateclass.get_months()"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../getDate/months.html" class="navigation navigation-next " aria-label="Next page: 针对月份的方法"><i class="fa fa-angle-right"></i></a>
+        <a href="../getDate/dateclass.get_EOM.html" class="navigation navigation-next " aria-label="Next page: dateclass.get_EOM()"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
